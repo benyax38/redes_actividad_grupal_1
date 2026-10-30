@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  web:
+    image: nginx:alpine
+    container_name: web_lab_grupo
+    ports: ["80:80"]
+    volumes: ["./html:/usr/share/nginx/html"]
+  dns:
+    image: coredns/coredns
+    container_name: dns_lab_grupo
+    ports: ["53:53/udp", "53:53/tcp"]
+    volumes: ["./config:/root"]
+    command: -conf /root/Corefile
